@@ -1,12 +1,17 @@
 <?php
-# Usa a imagem oficial do PHP com Apache
-FROM php:8.2-apache
-#Copia os arquivos da sua aplicação para o diretorio padrão do apache
-COPY . /var/www/html/
-#Habilita módulos adicionais do Apache(opcional)
-RUN docker-php-ext-install mysqli pdo pdo_mysql
-#Exponha a porta padrão do Apache
-EXPOSE 80
+function stringParaBinario ($string) {
+    $binario = '';
+    foreach(str_split($string) as $char) {
+        $binario .= str_pad(decbin(ord($char)), 8, '0', STR_PAD_LEFT) . ' ';
+    }
+    return $binario;
+}
+    $frase = "Lucas Alvim dos Santos Batista";
+    $fraseBinario = stringParaBinario ($frase);
+
+    echo "Frase original:" . $frase . "<br>";
+    echo "Frase em binário:" . $fraseBinario;
 
 ?>
+
 
